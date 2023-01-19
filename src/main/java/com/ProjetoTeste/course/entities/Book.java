@@ -18,16 +18,18 @@ public class Book implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
-	private String author; 
+	private String author;
+	private Double price;
 	
 	public Book() {
 		
 	}
 
-	public Book(Long id, String nome, String author) {
+	public Book(Long id, String nome, String author, Double price) {
 		this.id = id;
 		this.nome = nome;
 		this.author = author;
+		this.price = price;
 	}
 
 	public Long getId() {
@@ -54,6 +56,14 @@ public class Book implements Serializable{
 		this.author = author;
 	}
 
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -70,14 +80,9 @@ public class Book implements Serializable{
 		Book other = (Book) obj;
 		return Objects.equals(id, other.id);
 	}
+	
+	
 
-	
-	
-	
-	
-	
-	
-	
 	
 
 }
