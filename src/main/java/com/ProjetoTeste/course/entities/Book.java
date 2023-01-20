@@ -3,6 +3,8 @@ package com.ProjetoTeste.course.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.ProjetoTeste.course.entities.enums.DetalhesPromocaoEnum;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,16 +22,18 @@ public class Book implements Serializable{
 	private String nome;
 	private String author;
 	private Double price;
+	private DetalhesPromocaoEnum tipoP;
 	
 	public Book() {
 		
 	}
 
-	public Book(Long id, String nome, String author, Double price) {
+	public Book(Long id, String nome, String author, Double price, DetalhesPromocaoEnum tipoP) {
 		this.id = id;
 		this.nome = nome;
 		this.author = author;
 		this.price = price;
+		this.tipoP = tipoP;
 	}
 
 	public Long getId() {
@@ -64,6 +68,14 @@ public class Book implements Serializable{
 		this.price = price;
 	}
 
+	public DetalhesPromocaoEnum getTipoP() {
+		return tipoP;
+	}
+
+	public void setTipoP(DetalhesPromocaoEnum tipoP) {
+		this.tipoP = tipoP;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -83,6 +95,7 @@ public class Book implements Serializable{
 	
 	
 
+	
 	
 
 }
