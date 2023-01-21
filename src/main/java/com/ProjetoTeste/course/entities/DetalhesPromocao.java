@@ -30,8 +30,7 @@ public class DetalhesPromocao implements Serializable{
 	@OneToMany(mappedBy = "promo")
 	private List<Book> book = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "promo")
-	private Set<LivroPromo> promo = new HashSet<>();
+	
 	
 	public DetalhesPromocao() {
 		
@@ -84,10 +83,7 @@ public class DetalhesPromocao implements Serializable{
 		this.book = book;
 	}
 	
-	public Set<LivroPromo> getpromo(){
-		return promo;
-		
-	}
+	
 
 	@Override
 	public int hashCode() {

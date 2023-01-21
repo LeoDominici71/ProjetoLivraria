@@ -1,6 +1,8 @@
 package com.ProjetoTeste.course.entities;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 import com.ProjetoTeste.course.entities.pk.LivroPromocao;
@@ -18,18 +20,15 @@ public class LivroPromo implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@EmbeddedId
 	private LivroPromocao id = new LivroPromocao();
-	private Double precoAtualizado;
+	private String precoAtualizado;
 	private Double price;
 	private Integer pct;
 	
-	@ManyToOne
-	@JoinColumn(name = "promo_id")
-	private DetalhesPromocao promo;
 	
 	public LivroPromo() {
 	}
 
-	public LivroPromo(Book book,DetalhesPromocao detPromo ,Double precoAtualizado, Double price, Integer pct) {
+	public LivroPromo(Book book,DetalhesPromocao detPromo ,String precoAtualizado, Double price, Integer pct) {
 		this.precoAtualizado = precoAtualizado;
 		this.price = price;
 		this.pct = pct;
@@ -37,11 +36,11 @@ public class LivroPromo implements Serializable{
 		id.setdetPromo(detPromo);
 	}
 
-	public Double getPrecoAtualizado() {
+	public String getPrecoAtualizado() {
 		return precoAtualizado;
 	}
 
-	public void setPrecoAtualizado(Double precoAtualizado) {
+	public void setPrecoAtualizado(String precoAtualizado) {
 		this.precoAtualizado = precoAtualizado;
 	}
 
@@ -82,7 +81,7 @@ public class LivroPromo implements Serializable{
  
 	
 	
-	public double desconto( DetalhesPromocao detPromo, Double price, Integer pct) {
+	public String desconto( DetalhesPromocao detPromo, Double price, Integer pct) {
 
 		double sum = 0;
 		
@@ -98,7 +97,8 @@ public class LivroPromo implements Serializable{
 				sum = price - price * pct / 100;
 
 			}
-			return sum;
+			DecimalFormat df = new DecimalFormat("#,###.00");
+			return df.format(sum); 
 		}
 
 
