@@ -1,14 +1,15 @@
 package com.ProjetoTeste.course.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
-
-import com.ProjetoTeste.course.entities.enums.DetalhesPromocaoEnum;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 @Entity
 @Table(name = "tb_book")
@@ -22,18 +23,21 @@ public class Book implements Serializable{
 	private String nome;
 	private String author;
 	private Double price;
-	private DetalhesPromocaoEnum tipoP;
+	
+	@ManyToOne
+	@JoinColumn(name = "Promocao_tipo")
+	private DetalhesPromocao promo;
 	
 	public Book() {
 		
 	}
 
-	public Book(Long id, String nome, String author, Double price, DetalhesPromocaoEnum tipoP) {
+	public Book(Long id, String nome, String author, Double price, DetalhesPromocao promo) {
 		this.id = id;
 		this.nome = nome;
 		this.author = author;
 		this.price = price;
-		this.tipoP = tipoP;
+		this.promo = promo;
 	}
 
 	public Long getId() {
@@ -68,12 +72,12 @@ public class Book implements Serializable{
 		this.price = price;
 	}
 
-	public DetalhesPromocaoEnum getTipoP() {
-		return tipoP;
+	public DetalhesPromocao getPromo() {
+		return promo;
 	}
 
-	public void setTipoP(DetalhesPromocaoEnum tipoP) {
-		this.tipoP = tipoP;
+	public void setPromo(DetalhesPromocao promo) {
+		this.promo = promo;
 	}
 
 	@Override
@@ -97,5 +101,8 @@ public class Book implements Serializable{
 
 	
 	
+	
 
 }
+
+

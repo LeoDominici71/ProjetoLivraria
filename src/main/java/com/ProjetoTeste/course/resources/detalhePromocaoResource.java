@@ -9,26 +9,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ProjetoTeste.course.entities.Book;
-import com.ProjetoTeste.course.services.BookService;
+import com.ProjetoTeste.course.entities.DetalhesPromocao;
+import com.ProjetoTeste.course.services.detalhesPromocaoService;
 
 @RestController
-@RequestMapping(value = "/books")
-public class BookResource {
+@RequestMapping(value = "/DetalhesPromocaos")
+public class detalhePromocaoResource {
 	@Autowired
-	private BookService service;
+	private detalhesPromocaoService service;
 	
 	@GetMapping
-	public ResponseEntity<List<Book>> findAll(){
-		List<Book> list = service.findAll();
+	public ResponseEntity<List<DetalhesPromocao>> findAll(){
+		List<DetalhesPromocao> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 		
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Book> findById(@PathVariable Long id){
-		Book bok = service.findById(id);
+	public ResponseEntity<DetalhesPromocao> findById(@PathVariable Integer id){
+		DetalhesPromocao bok = service.findById(id);
 		return ResponseEntity.ok().body(bok);
 	}
 
 }
+
