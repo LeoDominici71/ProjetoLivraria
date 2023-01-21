@@ -3,16 +3,15 @@ package com.ProjetoTeste.course.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-
-import com.ProjetoTeste.course.entities.enums.DetalhesPromocaoEnum;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -30,6 +29,9 @@ public class DetalhesPromocao implements Serializable{
 	
 	@OneToMany(mappedBy = "promo")
 	private List<Book> book = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "promo")
+	private Set<LivroPromo> promo = new HashSet<>();
 	
 	public DetalhesPromocao() {
 		
@@ -80,6 +82,11 @@ public class DetalhesPromocao implements Serializable{
 
 	public void setBook(List<Book> book) {
 		this.book = book;
+	}
+	
+	public Set<LivroPromo> getpromo(){
+		return promo;
+		
 	}
 
 	@Override

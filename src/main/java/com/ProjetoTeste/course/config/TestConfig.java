@@ -10,7 +10,9 @@ import org.springframework.context.annotation.Profile;
 
 import com.ProjetoTeste.course.entities.Book;
 import com.ProjetoTeste.course.entities.DetalhesPromocao;
+import com.ProjetoTeste.course.entities.LivroPromo;
 import com.ProjetoTeste.course.repositories.BookRepository;
+import com.ProjetoTeste.course.repositories.LivroPromoRepository;
 import com.ProjetoTeste.course.repositories.detalhePromocaoRepository;
 
 
@@ -22,6 +24,8 @@ public class TestConfig implements CommandLineRunner {
 	private detalhePromocaoRepository detPromocaoRepository;
 	@Autowired
 	private BookRepository bookRepository;
+	@Autowired
+	private LivroPromoRepository livroPromoRepo;
 	
 
 		
@@ -44,6 +48,17 @@ public class TestConfig implements CommandLineRunner {
 			detPromocaoRepository.saveAll(Arrays.asList(det1,det2,det3));
 			
 			bookRepository.saveAll(Arrays.asList(u1,u2,u3,u4));
+			
+			LivroPromo li = new LivroPromo();
+			
+			LivroPromo li1 = new LivroPromo(u1, det2, li.desconto(det2, u1.getPrice(), det2.getPct()), u1.getPrice(), det2.getPct());
+			LivroPromo li2 = new LivroPromo(u2, det1, li.desconto(det1, u2.getPrice(), det1.getPct()), u2.getPrice(), det1.getPct());
+			LivroPromo li3 = new LivroPromo(u3, det1, li.desconto(det1, u3.getPrice(), det1.getPct()), u3.getPrice(), det1.getPct());
+			LivroPromo li4 = new LivroPromo(u4, det1, li.desconto(det1, u4.getPrice(), det1.getPct()), u4.getPrice(), det1.getPct());
+			
+			livroPromoRepo.saveAll(Arrays.asList(li1,li2,li3,li4));
+
+
 
 		
 		 
